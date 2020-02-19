@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Autor</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()" fill="clear">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="editAutorForm" (ngSubmit)="salvarAutor()">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Data de Nascimento</ion-label>
+      <ion-datetime formControlName="dataNascimento" display-format="DD.MM.YYYY" done-text="Ok" cancel-text="Cancelar">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Biografia</ion-label>
+      <ion-input formControlName="biografia" type="text"></ion-input>
+    </ion-item>
+    <ion-button color="primary" type="submit" [disabled]="editAutorForm.invalid">
+      Salvar
+    </ion-button>
+  </form>
+</ion-content>

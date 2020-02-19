@@ -4,6 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  {
+    path: 'modal-edit-autor',
+    loadChildren: () => import('./modal/modal-edit-autor/modal-edit-autor.module').then( m => m.ModalEditAutorPageModule)
+  },
 ];
 
 @NgModule({
