@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: 'modal-edit-autor',
     loadChildren: () => import('./modal/modal-edit-autor/modal-edit-autor.module').then( m => m.ModalEditAutorPageModule)
+  },  {
+    path: 'modal-edit-livro',
+    loadChildren: () => import('./modal/modal-edit-livro/modal-edit-livro.module').then( m => m.ModalEditLivroPageModule)
   },
+
 ];
 
 @NgModule({

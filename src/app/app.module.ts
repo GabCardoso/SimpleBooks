@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { ModalEditLivroPageModule } from './modal/modal-edit-livro/modal-edit-livro.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { environment } from 'src/environments/environment';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
-    ModalEditAutorPageModule, 
+    ModalEditAutorPageModule,
+    ModalEditLivroPageModule,
     AngularFireModule, 
     AngularFireAuthModule, 
     AngularFirestoreModule,

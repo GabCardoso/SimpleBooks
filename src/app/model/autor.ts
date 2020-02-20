@@ -3,8 +3,5 @@ export class Autor {
     nome: string
     dataNascimento: Date
     biografia: string
-
-    obterLivros() {
-
-    }
+    dataFormatada: string
 }

@@ -13,7 +13,11 @@ export class LivroService extends Firestore<Livro> {
     this.init()
   }
 
-  private init(): void {
-    this.setColletion('/livros')
+  public init(idAutor?: string): void {
+    if (idAutor) {
+      this.setColletion('/livros', ref => ref.where('idAutor', '==', idAutor))
+    } else {
+      this.setColletion('/livros')
+    }
   }
 }
