@@ -24,10 +24,10 @@
         <ion-item>
           <ion-label><strong>Biografia:</strong> {{ autor.biografia }}</ion-label>
         </ion-item>
-        <ion-button (click)="deletarAutor(autor.id)" fill="clear">
+        <ion-button (click)="deletarAutor(autor)" fill="clear">
           <ion-icon color="danger" slot="icon-only" name="trash-outline"></ion-icon>
         </ion-button>
-        <ion-button (click)="editarAutor()" fill="clear">
+        <ion-button (click)="editarAutor(autor)" fill="clear">
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-button>
       </ion-card>
