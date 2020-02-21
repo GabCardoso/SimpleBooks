@@ -22,6 +22,8 @@ export class HomePage {
   public livros: Observable<Livro[]>
   public livro = new Livro()
 
+  // Vareáveis para simular troca de páginas
+  // Mostrando componentes ou não de acordo com as ações do usuário
   public exibirAutores: boolean
   public exibirDetalheAutor: boolean
   public exibirDetalheLivro: boolean

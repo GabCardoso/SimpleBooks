@@ -7,10 +7,13 @@ export abstract class Firestore<T extends { id: string }> {
 
     constructor(protected db: AngularFirestore) { }
 
+    // Método que define qual Collection será retornada do banco
+    // Podendo passar também uma query com condições específicas se necessário
     protected setColletion(path: string, queryFn?: QueryFn) {
         this.collection = path ? this.db.collection(path, queryFn) : null
     }
 
+    // Recupera uma Collection de acordo com os parametros passados no 'setCollection'
     public getAll(): Observable<T[]> {
         return this.collection.valueChanges()
     }

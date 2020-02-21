@@ -34,6 +34,7 @@ export class ModalEditLivroPage implements OnInit {
     }
   }
 
+  // Cria um formulário de acordo com os atributos de Livro, com validações
   criarFormLivro() {
     this.editLivroForm = this.formBuilder.group({
       titulo: [this.livro.titulo, Validators.compose([
@@ -55,6 +56,7 @@ export class ModalEditLivroPage implements OnInit {
     })
   }
 
+  // Altera ou adicionar um livro no banco
   async salvarLivro(): Promise<void> {
     if (!this.srcImg){
       await this.overLayService.toast({

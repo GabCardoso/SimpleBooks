@@ -12,6 +12,7 @@ export class LivroService extends Firestore<Livro> {
     super(db);
   }
 
+  // Método que define de qual autor irá recuperar a Collection de livros  
   public init(idAutor: string): void {
     if (idAutor) {
       this.setColletion(`/autores/${idAutor}/livros`)

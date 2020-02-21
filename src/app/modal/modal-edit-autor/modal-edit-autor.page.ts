@@ -28,6 +28,7 @@ export class ModalEditAutorPage implements OnInit {
     this.criarFormAutor()
   }
 
+  // Cria um formulário de acordo com os atributos de Autor, com validações
   criarFormAutor() {
     this.editAutorForm = this.formBuilder.group({
       nome: [this.autor.nome, Validators.compose([
@@ -42,6 +43,7 @@ export class ModalEditAutorPage implements OnInit {
     })
   }
 
+  // Altera ou adicionar um autor no banco
   async salvarAutor(): Promise<void> {
     const loading = await this.overLayService.loading()
     try {
