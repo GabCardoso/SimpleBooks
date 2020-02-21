@@ -1,5 +1,7 @@
 {
   "name": "SimpleBooks",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

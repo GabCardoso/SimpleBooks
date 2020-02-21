@@ -6,5 +6,4 @@ export class Livro {
     resumo : string
     capa : string
     nota : number
-    idAutor: string
 }

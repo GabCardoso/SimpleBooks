@@ -10,14 +10,11 @@ export class LivroService extends Firestore<Livro> {
 
   constructor(db: AngularFirestore) {
     super(db);
-    this.init()
   }
 
-  public init(idAutor?: string): void {
+  public init(idAutor: string): void {
     if (idAutor) {
-      this.setColletion('/livros', ref => ref.where('idAutor', '==', idAutor))
-    } else {
-      this.setColletion('/livros')
+      this.setColletion(`/autores/${idAutor}/livros`)
     }
   }
 }

@@ -99,7 +99,6 @@ export class HomePage {
     const modal = await this.modalCtrl.create({
       component: ModalEditLivroPage,
       componentProps: {
-        idAutor: autor.id,
         livro: new Livro()
       }
     })

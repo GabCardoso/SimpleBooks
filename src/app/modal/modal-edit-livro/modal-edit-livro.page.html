@@ -12,6 +12,25 @@
 <ion-content>
   <form [formGroup]="editLivroForm" (ngSubmit)="salvarLivro()">
     <ion-item>
+      <ion-label position="floating">Capa</ion-label>
+      <ion-grid>
+        <ng-container *ngIf="srcImg">
+          <ion-row>
+            <ion-col size="12" class="ion-align-items-center">
+              <ion-img [src]="srcImg"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-button color="primary" (click)="upload()" fill="clear">
+              Upload
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
       <ion-label position="floating">Título</ion-label>
       <ion-input formControlName="titulo" type="text"></ion-input>
     </ion-item>
@@ -25,7 +44,6 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Nota</ion-label>
-      <!-- <ion-input formControlName="nota" type="number"></ion-input> -->
       <ion-select formControlName="nota" interface="action-sheet" cancelText="Cancelar">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>

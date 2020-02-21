@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { LivroService } from 'src/app/services/livro.service';
 import { OverLayService } from 'src/app/services/over-lay.service';
 import { Livro } from 'src/app/model/livro';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-modal-edit-livro',
@@ -14,20 +15,23 @@ export class ModalEditLivroPage implements OnInit {
 
   public editLivroForm: FormGroup
   public livro: Livro
-  public idAutor: string
+  public srcImg: string
 
   constructor(public formBuilder: FormBuilder,
     private modalCtrl: ModalController,
     private livroService: LivroService,
     private overLayService: OverLayService,
-    public navParams: NavParams
+    private navParams: NavParams,
+    private camera: Camera
   ) {
     this.livro = this.navParams.get('livro')
-    this.idAutor = this.navParams.get('idAutor')
   }
 
   ngOnInit() {
     this.criarFormLivro()
+    if (this.livro && this.livro.capa) {
+      this.srcImg = this.livro.capa
+    }
   }
 
   criarFormLivro() {
@@ -36,7 +40,8 @@ export class ModalEditLivroPage implements OnInit {
         Validators.required
       ])],
       ano: [this.livro.ano, Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('[0-9]{4}')
       ])],
       paginas: [this.livro.paginas, Validators.compose([
         Validators.required
@@ -44,7 +49,6 @@ export class ModalEditLivroPage implements OnInit {
       resumo: [this.livro.resumo, Validators.compose([
         Validators.required
       ])],
-      capa: [this.livro.capa],
       nota: [this.livro.nota, Validators.compose([
         Validators.required
       ])]
@@ -52,17 +56,23 @@ export class ModalEditLivroPage implements OnInit {
   }
 
   async salvarLivro(): Promise<void> {
+    if (!this.srcImg){
+      await this.overLayService.toast({
+        message: 'É necessário o upload da capa do livro'
+      })
+      return
+    }
     const loading = await this.overLayService.loading()
     try {
       if (this.livro.id) {
         await this.livroService.update({
           id: this.livro.id,
-          idAutor: this.livro.idAutor,
+          capa: this.srcImg,
           ...this.editLivroForm.value
         })
       } else {
         await this.livroService.create({
-          idAutor: this.idAutor,
+          capa: this.srcImg,
           ...this.editLivroForm.value
         })
       }
@@ -78,6 +88,20 @@ export class ModalEditLivroPage implements OnInit {
     } finally {
       loading.dismiss()
     }
+  }
+
+  async upload() {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then(imageData => {
+      this.srcImg = 'data:image/jpg;base64,' + imageData
+    })
   }
 
   fecharModal() {
