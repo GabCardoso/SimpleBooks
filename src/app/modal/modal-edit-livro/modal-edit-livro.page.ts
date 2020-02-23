@@ -45,7 +45,8 @@ export class ModalEditLivroPage implements OnInit {
         Validators.pattern('[0-9]{4}')
       ])],
       paginas: [this.livro.paginas, Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ])],
       resumo: [this.livro.resumo, Validators.compose([
         Validators.required
